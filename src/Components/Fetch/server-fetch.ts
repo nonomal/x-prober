@@ -28,18 +28,16 @@ export const serverFetch = async <T>(
   }
   const res = await fetch(serverFetchRoute(action), fetchOpts);
   let data: T | null = null;
-  if (res.ok) {
-    try {
-      data = await res.json();
-    } catch (e: unknown) {
-      if (
-        e instanceof Error &&
-        (e.name === "AbortError" || opts.signal?.aborted)
-      ) {
-        throw e;
-      }
-      data = null;
+  try {
+    data = await res.json();
+  } catch (e: unknown) {
+    if (
+      e instanceof Error &&
+      (e.name === "AbortError" || opts.signal?.aborted)
+    ) {
+      throw e;
     }
+    data = null;
   }
   return {
     data,
