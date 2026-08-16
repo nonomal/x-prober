@@ -5,6 +5,14 @@ will be documented in this file
 
 ---
 
+## 10.0.4 - 2026-08-16
+
+### 修复 / Fix
+- 修复多节点磁盘信息计算错误问题
+- Fixed an issue where disk information was calculated incorrectly across nodes
+
+---
+
 ## 10.0.3 - 2026-08-07
 
 ### 修复 / Fix
@@ -16,8 +24,6 @@ will be documented in this file
 ### 优化 / Optimize
 - 优化部分UI间距
 - Optimize some UI gap
-
-
 
 ## 10.0.3-beta.1 - 2026-08-06
 
