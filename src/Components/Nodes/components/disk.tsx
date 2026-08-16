@@ -6,19 +6,22 @@ import { formatBytes } from "@/Components/Utils/components/format-bytes.js";
 import styles from "./disk.module.scss";
 import { NodesUsage, NodesUsageLabel, NodesUsageOverview } from "./usage.js";
 
-const Disk: FC<DiskUsageItemProps> = memo(({ id, free, total }) => (
-  <div className={styles.item} key={id}>
-    <NodesUsage percent={total ? Math.round((free / total) * 100) : 0}>
-      <NodesUsageLabel>
-        <HardDrive />
-        {id}
-      </NodesUsageLabel>
-      <NodesUsageOverview>
-        {`${formatBytes(free)} / ${formatBytes(total)}`}
-      </NodesUsageOverview>
-    </NodesUsage>
-  </div>
-));
+const Disk: FC<DiskUsageItemProps> = memo(({ id, free, total }) => {
+  const used = total - free;
+  const percent = total ? Math.round((used / total) * 100) : 0;
+  const overview = `${formatBytes(used)} / ${formatBytes(total)}`;
+  return (
+    <div className={styles.item} key={id}>
+      <NodesUsage percent={percent}>
+        <NodesUsageLabel>
+          <HardDrive />
+          {id}
+        </NodesUsageLabel>
+        <NodesUsageOverview>{overview}</NodesUsageOverview>
+      </NodesUsage>
+    </div>
+  );
+});
 export const NodesDisk: FC<{ data: PollData["diskUsage"] }> = ({ data }) => {
   const items = data?.items ?? [];
   return (
