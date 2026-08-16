@@ -33,9 +33,12 @@ final class NodesAction
 
     private function getNodeData($nodeId)
     {
-        $node = UtilsApi::arrayFind(NodesApi::getUserConfigNodes(), function ($item) use ($nodeId) {
-            return isset($item['url']) && isset($item['id']) && $item['id'] === $nodeId;
-        });
+        $node = UtilsApi::arrayFind(
+            NodesApi::getUserConfigNodes(),
+            function ($item) use ($nodeId) {
+                return isset($item['url'], $item['id']) && $item['id'] === $nodeId;
+            }
+        );
         if ( !$node) {
             return;
         }

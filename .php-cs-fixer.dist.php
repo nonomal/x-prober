@@ -51,6 +51,7 @@ return (new PhpCsFixer\Config())
         'single_blank_line_at_eof' => true,
         'single_import_per_statement' => true,
         'single_line_after_imports' => true,
+        'single_space_around_construct' => true,
         'switch_case_semicolon_to_colon' => true,
         'switch_case_space' => true,
         'visibility_required' => ['elements' => ['property', 'method']], // PHP 5.4 支持类成员可见性，但不支持 const 可见性
